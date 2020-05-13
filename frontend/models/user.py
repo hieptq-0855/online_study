@@ -1,6 +1,8 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
-class User(models.Model):
+
+class User(AbstractUser):
     ROLE = [
         (1, 'Admin'),
         (0, 'Client'),
@@ -13,6 +15,8 @@ class User(models.Model):
     password = models.CharField(max_length=200)
     dob = models.DateField()
     role = models.IntegerField(choices=ROLE, default=1)
+    create_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return "{} {} {}".format(self.first_name, self.mid_name, self.last_name)

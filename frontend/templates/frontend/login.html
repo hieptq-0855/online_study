@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Đăng nhập</title>
+    {% load static %}
+    <link type="text/css" href="{% static 'frontend/css/login_page.css' %}" rel="stylesheet">
+</head>
+<body>
+<div id="wrapper" class="wrapper">
+    <div class="container">
+        <h1>Welcome</h1>
+        {% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div>
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+{#    {% for error in form.non_field_errors %}#}
+{#        <div>#}
+{#            <strong>{{ error|escape }}</strong>#}
+{#        </div>#}
+{#    {% endfor %}#}
+{% endif %}
+    {% if message_error %}
+        <div>
+                <strong>{{ message_error }}</strong>
+            </div>
+    {% endif %}
+        <form class="form" method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <input type="text" name="email" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit" name="login-button" class="loginbutton">Login</button>
+            <button type="button" name="signup-button" class="loginbutton">Sign Up</button><br>
+            <div class="nosignin"><a style="color: white" href="{% url 'index' %}">Continue without signing in</a></div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
