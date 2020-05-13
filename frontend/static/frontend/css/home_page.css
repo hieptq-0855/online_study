@@ -1,0 +1,10 @@
+.start-button {
+    width: 20%;
+}
+.float-right {
+    float: right;
+}
+.card-style {
+    height: 300px;
+    overflow-y: hidden;
+}
